@@ -18,3 +18,7 @@ int get_week(int date[3])
 	result += date[2];
 	return result % 7;
 }
+
+char get_choice()
+{
+}
