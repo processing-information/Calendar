@@ -19,6 +19,21 @@ int get_week(int date[3])
 	return result % 7;
 }
 
-char get_choice()
+char get_single()
 {
+	char input = getch();
+	if (input >= 'A' && input <= 'Z')
+		input += 20; //대문자를 소문자로 변환
+	return input;
+}
+
+void get_string(char* print_string)
+{
+	printf("%s", print_string);
+	gets_s(temp_string, MAX_STRING_SIZE); //전역변수 temp_string에 문자열 저장
+}
+
+int str_search(const char* src, const char* value)
+{
+
 }
