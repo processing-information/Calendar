@@ -11,17 +11,18 @@ int get_week(int date[3])
 		day_table[1] = 29;
 	result = days;
 
-	for (int i = 1; i < date[2]; i++)
+	for (int i = 1; i < date[1]; i++)
 	{
 		result += day_table[i - 1];
 	}
 	result += date[2];
+    
 	return result % 7;
 }
 
 char get_single()
 {
-	char input = getch();
+	char input = _getch();
 	if (input >= 'A' && input <= 'Z')
 		input += 20; //대문자를 소문자로 변환
 	return input;
@@ -35,5 +36,4 @@ void get_string(char* print_string)
 
 int str_search(const char* src, const char* value)
 {
-
 }
