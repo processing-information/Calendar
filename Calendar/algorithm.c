@@ -1,4 +1,12 @@
+/*
+algorithm.c
+인터페이스를 제외한 함수들 구현 각 장면 
+구현에 사용되는 함수들이 호출하는 함수를 이곳에 정의
+*/
 #include "algorithm.h"
+#include <stdio.h>
+#include <conio.h>
+#include <string.h>
 
 int get_week(int date[3])
 {
@@ -34,6 +42,46 @@ void get_string(char* print_string)
 	gets_s(temp_string, MAX_STRING_SIZE); //전역변수 temp_string에 문자열 저장
 }
 
-int str_search(const char* src, const char* value)
+int en_search(const char* src, const char* value)
 {
+	int same_size;
+	const int value_size = strlen(value);
+	const int source_size = strlen(src);
+
+	for (int i = 0; i < source_size - value_size + 1; i++)
+	{
+		same_size = 0;
+		for (int j = 0; j < value_size; j++)
+		{
+			if (src[i + j] == value[j])
+			{
+				same_size++;
+			}
+			if (same_size == value_size)
+				return 1;
+		}
+	}
+	return 0;
+}
+
+int kr_search(const char* src, const char* value)
+{
+	int same_size;
+	const int value_size = strlen(value);
+	const int source_size = strlen(src);
+
+	for (int i = 0; i < source_size - value_size + 1; i += 2)
+	{
+		same_size = 0;
+		for (int j = 0; j < value_size; j += 2)
+		{
+			if (src[i + j] == value[j] && src[i + j + 1] == value[j + 1])
+			{
+				same_size += 2;
+			}
+			if (same_size == value_size)
+				return 1;
+		}
+	}
+	return 0;
 }
