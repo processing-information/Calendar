@@ -6,16 +6,19 @@ algorithm.c
 #include "algorithm.h"
 #include <stdio.h>
 #include <conio.h>
-#include <string.h>
+#include <stdarg.h>
+#include <stdlib.h>
+
 
 int get_week(int date[3])
 {
+	//date는 {년,월,일} 형식으로 되어있음
 	unsigned int result = 0;
 	int preyear = date[0] - 1;
 	int days = preyear * 365 + (preyear / 4 - preyear / 100 + preyear / 400);
 
 	int day_table[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-	if ((date[0] % 4 == 0 && date[0] % 100 != 0) || date[0] % 400 == 0)
+	if ((date[0] % 4 == 0 && date[0] % 100 != 0) || date[0] % 400 == 0) //매 4년마다 
 		day_table[1] = 29;
 	result = days;
 
@@ -28,60 +31,38 @@ int get_week(int date[3])
 	return result % 7;
 }
 
-char get_single()
+char get_choice(char range, ...)
 {
-	char input = _getch();
-	if (input >= 'A' && input <= 'Z')
-		input += 20; //대문자를 소문자로 변환
-	return input;
-}
+	char input;
+	va_list ap; //가변인자 탐색을 위한 포인터
+	va_start(ap, range);//ap에 2번째 인자 주소 넘겨줌
+	char* args = (char*)malloc(range);
 
-void get_string(char* print_string)
-{
-	printf("%s", print_string);
-	gets_s(temp_string, MAX_STRING_SIZE); //전역변수 temp_string에 문자열 저장
-}
 
-int en_search(const char* src, const char* value)
-{
-	int same_size;
-	const int value_size = strlen(value);
-	const int source_size = strlen(src);
+	if (args == NULL)//동적할당이 실패할 경우를 대비
+		return -1;
+	else if (range <= 1)//동적할당된 범위를 넘는것을 방지
+		return -2;
 
-	for (int i = 0; i < source_size - value_size + 1; i++)
+	for (int i = 0; i < range; i++)
+		args[i] = va_arg(ap, char); //ap를 1바이트씩 넘기며 args에 저장
+	va_end(ap);
+
+	while (1)
 	{
-		same_size = 0;
-		for (int j = 0; j < value_size; j++)
+		input = _getch();
+		if (args[0] <= input && input <= args[1])
 		{
-			if (src[i + j] == value[j])
+			free(args);
+			return input;
+		}
+		for (int i = 2; i < range; i++)
+		{
+			if (input == args[i])
 			{
-				same_size++;
+				free(args);
+				return input;
 			}
-			if (same_size == value_size)
-				return 1;
 		}
 	}
-	return 0;
-}
-
-int kr_search(const char* src, const char* value)
-{
-	int same_size;
-	const int value_size = strlen(value);
-	const int source_size = strlen(src);
-
-	for (int i = 0; i < source_size - value_size + 1; i += 2)
-	{
-		same_size = 0;
-		for (int j = 0; j < value_size; j += 2)
-		{
-			if (src[i + j] == value[j] && src[i + j + 1] == value[j + 1])
-			{
-				same_size += 2;
-			}
-			if (same_size == value_size)
-				return 1;
-		}
-	}
-	return 0;
 }
