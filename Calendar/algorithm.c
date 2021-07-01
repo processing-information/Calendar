@@ -9,7 +9,7 @@ algorithm.c
 #include <stdarg.h>
 #include <stdlib.h>
 #include <math.h>
-
+#include <time.h>
 
 int get_week(int date[3])
 {
@@ -52,7 +52,7 @@ char get_choice(char range, ...)
 	}
 }
 
-int d_day(int date_1[3],int date_2[3])
+int d_day(const int *date_1, const int *date_2)
 {
 	int result = get_day(date_1) - get_day(date_2);
 	if (result<0)
@@ -61,7 +61,7 @@ int d_day(int date_1[3],int date_2[3])
 		return result;
 }
 
-int get_day(int date[3])
+int get_day(const int *date)
 {
 	//date는 {년,월,일} 형식으로 되어있음
 	unsigned int result = 0;
@@ -80,4 +80,15 @@ int get_day(int date[3])
 	result += date[2];
 
 	return result;
+}
+
+void set_today(int* date)
+{
+	time_t t = time(NULL);
+	struct tm tm;
+	localtime_s(&tm, &t);
+
+	date[0] = tm.tm_year + 1900;
+	date[1] = tm.tm_mon + 1;
+	date[2] = tm.tm_mday;
 }

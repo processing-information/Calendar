@@ -11,7 +11,7 @@ typedef struct A schedule;
 typedef struct B user;
 
 user* user_start;
-
+int today[3]; //오늘을 저장한 변수
 
 //일정 구조체
 struct A

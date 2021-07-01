@@ -23,7 +23,10 @@ char user_choice = get_choice(5,'1','7','g','q','e'); 로 호출할수 있다.
 char get_choice(char range, ...);
 
 //날짜 2개를 주면 디데이를 반환해주는 함수
-int d_day(int date_1[3], int date_2[3]);
+int d_day(const int* date_1, const int* date_2);
 
 //d_day()와 get_week()를 위한 함수
-int get_day(int date[3]);
+int get_day(const int* date);
+
+//int date[3]를 인자로 받아 오늘로 바꿔줌
+void set_today(int* date);

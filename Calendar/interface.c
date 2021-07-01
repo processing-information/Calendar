@@ -24,7 +24,7 @@ void cal_search(user * usr)
 	switch (choice)
 	{
 	case '1': name_search(usr); break;
-	case '2': date_seatch(usr); break;
+	case '2': date_search(usr); break;
 	case '3': return;
 	default: break;
 	}
@@ -37,7 +37,7 @@ void name_search(user* usr)
 	char input[MAX_GET_STRING_SIZE];
 	gets_s(input, MAX_GET_STRING_SIZE);
 	schedule* ptr = usr->schedules;
-	schedule* result[10];
+	schedule* result[10] = { 0 };
 	int i;
 
 	while (1)
@@ -101,14 +101,13 @@ void print_schedule(schedule* src)
 	default:
 		break;
 	}
-
-	printf("%d-%d-%d\t%d\t\t%d\t\t%s\t\t%s\n", src->date[0], src->date[1], src->date[2],
-		src->time[0], src->time[1], repeat, src->schedule_name);
+	printf("%d-%d-%d\t%d\t%d\t\t%d\t\t%s\t\t%s\n", src->date[0], src->date[1], src->date[2],
+		d_day(today, src->date), src->time[0], src->time[1], repeat, src->schedule_name);
 }
 
 void print_schedule_base()
 {
-	printf("날짜\t\t시작시간\t종료시간\t반복여부\t일정 이름\n");
+	printf("날짜\t\tD-day\t시작시간\t종료시간\t반복여부\t일정 이름\n");
 	PRINT_DASH;
 }
 
@@ -116,7 +115,7 @@ void date_search(user* usr)
 {
 	int date[3];
 	schedule* ptr = usr->schedules;
-	schedule* result[10];
+	schedule* result[10] = { 0 };
 	int i;
 	printf("검색할 일정의 날짜 입력\n");
 	PRINT_DASH;
@@ -179,4 +178,3 @@ void date_search(user* usr)
 	}
 
 }
-
