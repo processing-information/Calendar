@@ -8,27 +8,12 @@ algorithm.c
 #include <conio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <math.h>
 
 
 int get_week(int date[3])
 {
-	//date는 {년,월,일} 형식으로 되어있음
-	unsigned int result = 0;
-	int preyear = date[0] - 1;
-	int days = preyear * 365 + (preyear / 4 - preyear / 100 + preyear / 400);
-
-	int day_table[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-	if ((date[0] % 4 == 0 && date[0] % 100 != 0) || date[0] % 400 == 0) //매 4년마다 
-		day_table[1] = 29;
-	result = days;
-
-	for (int i = 1; i < date[1]; i++)
-	{
-		result += day_table[i - 1];
-	}
-	result += date[2];
-    
-	return result % 7;
+	return get_day(date) % 7;
 }
 
 char get_choice(char range, ...)
@@ -65,4 +50,34 @@ char get_choice(char range, ...)
 			}
 		}
 	}
+}
+
+int d_day(int date_1[3],int date_2[3])
+{
+	int result = get_day(date_1) - get_day(date_2);
+	if (result<0)
+		return ~result + 1;
+	else
+		return result;
+}
+
+int get_day(int date[3])
+{
+	//date는 {년,월,일} 형식으로 되어있음
+	unsigned int result = 0;
+	int preyear = date[0] - 1;
+	int days = preyear * 365 + (preyear / 4 - preyear / 100 + preyear / 400);
+
+	int day_table[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	if ((date[0] % 4 == 0 && date[0] % 100 != 0) || date[0] % 400 == 0) //매 4년마다 
+		day_table[1] = 29;
+	result = days;
+
+	for (int i = 1; i < date[1]; i++)
+	{
+		result += day_table[i - 1];
+	}
+	result += date[2];
+
+	return result;
 }

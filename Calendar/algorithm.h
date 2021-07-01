@@ -21,3 +21,9 @@ char user_choice = get_choice(5,'1','7','g','q','e'); 로 호출할수 있다.
 반환값이 -2 인경우 : 첫번째 인자를 잘못 전달함
 */
 char get_choice(char range, ...);
+
+//날짜 2개를 주면 디데이를 반환해주는 함수
+int d_day(int date_1[3], int date_2[3]);
+
+//d_day()와 get_week()를 위한 함수
+int get_day(int date[3]);
