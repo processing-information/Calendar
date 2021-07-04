@@ -6,8 +6,96 @@ interface.c
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
+#include <Windows.h>
 #include "interface.h"
 #include "algorithm.h"
+
+void cal_main(void)
+{
+	time_t t = time(NULL);
+	struct tm tm;
+	localtime_s(&tm, &t);
+
+	int year = tm.tm_year + 1900;
+	int mon = tm.tm_mon + 1;
+	int day = tm.tm_mday;
+	int date[3] = { year, mon, 1 };
+
+	printf("\t\t오늘 : %d년 %d월 %d일\n\n", year, mon, day);
+	printf("%d년 %d월===========================================\n", year, mon);
+	print_cal(date);
+	printf("\n=====================================================");
+	
+	while (1)
+	{
+		printf("\n\n1. 사용자 선택\t2. 일정 추가\t3. 일정 수정\t4. 일정 검색\n\n5. 일정 삭제\tp. 사용자 관리\tx. 종료\n");
+		char choice = get_choice(4, '1', '5', 'p', 'x');
+
+		switch (choice)
+		{
+		case '1':
+			system("cls");
+			//user_choice();
+			printf("user_choice()");
+			break;
+		case '2':
+			system("cls");
+			//cal_add();
+			printf("cal_add()");
+			break;
+		case '3':
+			system("cls");
+			//cal_edit();
+			printf("cal_edit()");
+			break;
+		case '4':
+			system("cls");
+			//cal_search();
+			printf("cal_search()");
+			break;
+		case '5':
+			system("cls");
+			//cal_del();
+			printf("cal_del()");
+			break;
+		case 'p':
+			system("cls");
+			//사용자 추가 삭제 ......
+			printf("사용자 추가 삭제()");
+			break;
+		case 'x':
+			system("cls");
+			printf("프로그램을 종료합니다.");
+			exit(0);
+		}
+	}
+}
+
+void print_cal(int date[3])
+{
+	printf("일\t월\t화\t수\t목\t금\t토\n");
+	printf("=====================================================\n");
+	int start = get_week(date);
+
+	int mon = date[1];
+
+	int day_table[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	if ((date[0] % 4 == 0 && date[0] % 100 != 0) || date[0] % 400 == 0)
+		day_table[1] = 29;
+
+	for (int i = 0; i < start; i++)
+	{
+		printf("\t");
+	}
+	for (int i = 1; i <= day_table[mon - 1]; i++)
+	{
+		if (start % 7 == 0)
+			printf("\n");
+		printf("%d\t", i);
+		start++;
+	}
+}
 
 void cal_search(user * usr)
 {

@@ -10,5 +10,7 @@ start.c
 int main()
 {
 	set_today(today);
+	cal_main();
+
 	return 0;
 }

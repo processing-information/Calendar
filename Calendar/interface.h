@@ -19,3 +19,9 @@ void print_schedule(schedule* src);
 
 //print_schedule을 호출전에 화면 상단에 레이블을 만들어 주는 함수
 void print_schedule_base();
+
+//메인화면 출력 함수
+void cal_main();
+
+//달력 출력 함수
+void print_cal(date);
