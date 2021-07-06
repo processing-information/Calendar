@@ -5,7 +5,29 @@ interface.c에 정의된 함수들의 선언을 작성
 #pragma once
 #include "global use.h"
 
+typedef struct
+{
+	int addy;
+	int addm;
+	int addd;
+	int firsttime;
+	int lasttime;
+	char cal_date[MAXDATE];
+	char cal_name[MAXNAME];
+	char repeat[3];
+}g_add;
 
+#define MAXDATE 150
+#define MAXNAME 100
+
+
+void cal_addrepeat();
+
+void everyday();
+
+void monthly();
+void everyyear();
+void cal_add();
 
 int user_menu();
 
