@@ -14,8 +14,8 @@ void cal_main(void)
 {
 	time_t t = time(NULL);
 	struct tm tm;
-	localtime_s(&tm, &t);
 
+	localtime_s(&tm, &t);
 	int year = tm.tm_year + 1900;
 	int mon = tm.tm_mon + 1;
 	int day = tm.tm_mday;
@@ -265,42 +265,29 @@ void date_search(user* usr)
 	}
 
 }
-#include "interface.h"
-#include "algorithm.h"
 
 
 
-	struct user {
-		int year;
-		int month;
-		int day;
-		char *name[10];
-	};
-
-	int user_menu()
-	{
-		struct user u;
-	printf("년도 입력: ");
-	printf("월 입력: ");
-	printf("일 입력: ");
-	printf("이름 입력: ");
-	
-	
-
-	scanf_s("%d\n", &u.year);
-	scanf_s("%d\n", &u.month);
-	scanf_s("%d\n", &u.day);
-	scanf_s("%d\n", &u.name);
-
-
-	
-}
-
-
-
-
-
-void del_user()
+int main()
 {
+	struct B* head = malloc(sizeof(struct B));
 
+	struct B* node1 = malloc(sizeof(struct B));
+	*head->next = *node1;
+	node1->user_name;
+
+	struct B* node2 = malloc(sizeof(struct B));
+	*node1->next = *node2;
+	node2->user_name;
+
+	node2->next = NULL;
+
+
+	
 }
+
+
+
+
+
+

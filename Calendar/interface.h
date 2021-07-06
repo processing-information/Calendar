@@ -7,9 +7,6 @@ interface.c에 정의된 함수들의 선언을 작성
 
 
 
-int user_menu();
-
-void del_user();
 
 //메인화면에서 일정 검색하면 오는 함수
 void cal_search(user* usr);
@@ -31,3 +28,5 @@ void cal_main();
 
 //달력 출력 함수
 void print_cal(date);
+
+int main();

@@ -3,6 +3,7 @@
 */
 
 #pragma once
+#define DATAMAX	10
 #define MAX_GET_STRING_SIZE 20
 #define USER_NAME_SIZE 15
 #define PRINT_DASH printf("========================================================================================\n")
@@ -21,7 +22,6 @@ struct A
 	char schedule_name[MAX_GET_STRING_SIZE];
 	int repeat;
 	schedule* next;
-	schedule* prev;
 };
 
 //사용자 구조체
@@ -29,6 +29,8 @@ struct B
 {
 	char user_name[USER_NAME_SIZE];
 	user* next;
-	user* prev;
 	schedule* schedules;
 };
+
+//user->next가 다음 user 구조체를 가르키고 있으면 되
+//구조체 만들떄 malloc(sizeof(user))로 만들고
