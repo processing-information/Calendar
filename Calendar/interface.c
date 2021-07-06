@@ -9,6 +9,7 @@ interface.c
 #include <time.h>
 #include "interface.h"
 #include "algorithm.h"
+#define TEMP_CR_USR 100
 
 void cal_main(user * usr)
 {
@@ -20,6 +21,8 @@ void cal_main(user * usr)
 	int mon = tm.tm_mon + 1;
 	int day = tm.tm_mday;
 	int date[3] = { year, mon, 1 };
+
+	
 	
 	while (1)
 	{
@@ -29,41 +32,34 @@ void cal_main(user * usr)
 		printf("\n=====================================================");
 		printf("\n\n1. 사용자 선택\t2. 일정 추가\t3. 일정 수정\t4. 일정 검색\n\n5. 일정 삭제\tp. 사용자 관리\tx. 종료\n");
 		char choice = get_choice(4, '1', '5', 'p', 'x');
-
+		system("cls");
 		switch (choice)
 		{
 		case '1':
-			system("cls");
+			
 			//user_choice();
 			printf("user_choice()");
 			break;
 		case '2':
-			system("cls");
 			//cal_add();
 			printf("cal_add()");
 			break;
 		case '3':
-			system("cls");
 			//cal_edit();
 			printf("cal_edit()");
 			break;
 		case '4':
-			system("cls");
-			//cal_search();
-			printf("cal_search()");
+			cal_search(usr);
 			break;
 		case '5':
-			system("cls");
 			//cal_del();
 			printf("cal_del()");
 			break;
 		case 'p':
-			system("cls");
 			//사용자 추가 삭제 ......
 			printf("사용자 추가 삭제()");
 			break;
 		case 'x':
-			system("cls");
 			printf("프로그램을 종료합니다.");
 			return;
 		}
@@ -102,9 +98,9 @@ void cal_search(user * usr)
 	printf("검색할 항목 선택\n");
 	PRINT_DASH;
 	PRINT_DASH;
-	printf("[1] 일정 이름으로 검색");
-	printf("[2] 날짜로 검색");
-	printf("[3] 돌아가기");
+	printf("[1] 일정 이름으로 검색\n");
+	printf("[2] 날짜로 검색\n");
+	printf("[3] 돌아가기\n");
 	PRINT_DASH;
 
 	char choice = get_choice(2, '1', '3');
@@ -133,10 +129,13 @@ void name_search(user* usr)
 		i = 0;
 		while (1)
 		{
-			if (i >= 10 && ptr->next == NULL)
-				break;
-			else if (strstr(ptr->schedule_name, input))
+			if (!(ptr == NULL) && strstr(ptr->schedule_name, input))
+			{
 				result[i++] = ptr;
+				ptr = ptr->next;
+				if (i >= 10 || ptr == NULL)
+					break;
+			}
 		}
 
 		system("cls");
@@ -221,14 +220,16 @@ void date_search(user* usr)
 		i = 0;
 		while (1)
 		{
-			if (i >= 10 && ptr->next == NULL)
-				break;
-			else if (	ptr->date[0] == date[0] &&
-						ptr->date[1] == date[1] &&
-						ptr->date[2] == date[2]		)
+			if (	!(ptr == NULL) && 
+					ptr->date[0] == date[0] &&
+					ptr->date[1] == date[1] &&
+					ptr->date[2] == date[2]		)
 			{
 				result[i++] = ptr;
-			}		
+				ptr = ptr->next;
+				if (i >= 10 || ptr == NULL)
+					break;
+			}	
 		}
 
 		system("cls");
@@ -271,27 +272,27 @@ void date_search(user* usr)
 
 
 
-	struct user {
-		int year;
-		int month;
-		int day;
-		char *name[10];
-	};
+struct user {
+	int year;
+	int month;
+	int day;
+	char *name[10];
+};
 
-	int user_menu()
-	{
-		struct user u;
-	printf("년도 입력: ");
-	printf("월 입력: ");
-	printf("일 입력: ");
-	printf("이름 입력: ");
+int user_menu()
+{
+	struct user u;
+printf("년도 입력: ");
+printf("월 입력: ");
+printf("일 입력: ");
+printf("이름 입력: ");
 	
 	
 
-	scanf_s("%d\n", &u.year);
-	scanf_s("%d\n", &u.month);
-	scanf_s("%d\n", &u.day);
-	scanf_s("%d\n", &u.name);
+scanf_s("%d\n", &u.year);
+scanf_s("%d\n", &u.month);
+scanf_s("%d\n", &u.day);
+scanf_s("%d\n", &u.name);
 
 
 	

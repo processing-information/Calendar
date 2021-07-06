@@ -21,7 +21,6 @@ struct A
 	char schedule_name[MAX_GET_STRING_SIZE];
 	int repeat;
 	schedule* next;
-	schedule* prev;
 };
 
 //사용자 구조체
