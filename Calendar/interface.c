@@ -10,7 +10,7 @@ interface.c
 #include "interface.h"
 #include "algorithm.h"
 
-void cal_main(void)
+void cal_main(user * usr)
 {
 	time_t t = time(NULL);
 	struct tm tm;
