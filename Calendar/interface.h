@@ -31,3 +31,7 @@ void cal_main();
 
 //달력 출력 함수
 void print_cal(date);
+
+void cal_del(user* usr);
+
+void cal_edit(user* usr);

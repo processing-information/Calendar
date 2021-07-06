@@ -306,3 +306,57 @@ void del_user()
 {
 
 }
+
+void cal_del(user* usr)
+{
+	printf("삭제할 일정 이름 입력\n");
+	PRINT_DASH;
+	char input[MAX_GET_STRING_SIZE];
+	gets_s(input, MAX_GET_STRING_SIZE);
+	schedule* ptr = usr->schedules;
+	schedule* result[10] = { 0 };
+	int i;
+
+	schedule* pPrev = pHead;
+	schedule* pFind = pHead->next;
+	schedule* pTemp;
+
+	while (pFind != NULL)
+	{
+		if (CompareDateAndTime(pFind->m_date, date) == 0)
+		{
+			pTemp = pFind;
+			pPrev->next = pFind->next;
+			free(pTemp);
+			break;
+		}
+
+		pFind = pFind->next;
+		pPrev = pPrev->next;
+	}
+}
+
+void cal_edit(user* usr)
+{
+	printf("수정할 일정 이름 입력\n");
+	PRINT_DASH;
+	char input[MAX_GET_STRING_SIZE];
+	gets_s(input, MAX_GET_STRING_SIZE);
+	schedule* ptr = usr->schedules;
+	schedule* result[10] = { 0 };
+	int i;
+
+	schedule* pFind = pHead->next;
+	schedule* pTemp;
+
+	while (pFind != NULL)
+	{
+		if (CompareDateAndTime(pFind->m_date, schedule.m_date) == 0)
+		{
+			pTemp = pFind;
+			scanf_s("%s", pTemp->m_szText);
+			break;
+		}
+	}
+
+}
