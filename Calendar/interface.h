@@ -35,3 +35,5 @@ void print_cal(date);
 void cal_del(user* usr);
 
 void cal_edit(user* usr);
+
+void print_schedule_nl(schedule* src);

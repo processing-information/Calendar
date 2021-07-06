@@ -360,3 +360,22 @@ void cal_edit(user* usr)
 	}
 
 }
+
+void print_schedule_nl(schedule* src)
+{
+	char repeat[8];
+
+	switch (src->repeat)
+	{
+	case 0: strcpy_s(repeat, 8, "없음"); break;
+	case 1: strcpy_s(repeat, 8, "매일"); break;
+	case 2: strcpy_s(repeat, 8, "매주"); break;
+	case 3: strcpy_s(repeat, 8, "매월"); break;
+	case 4: strcpy_s(repeat, 8, "매년"); break;
+
+	default:
+		break;
+	}
+	printf("%d-%d-%d\t%d\t%d\t\t%d\t\t%s\t\t%s\n", src->date[0], src->date[1], src->date[2],
+		d_day(today, src->date), src->time[0], src->time[1], repeat, src->schedule_name);
+}
