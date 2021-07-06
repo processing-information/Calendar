@@ -20,14 +20,13 @@ void cal_main(user * usr)
 	int mon = tm.tm_mon + 1;
 	int day = tm.tm_mday;
 	int date[3] = { year, mon, 1 };
-
-	printf("\t\t오늘 : %d년 %d월 %d일\n\n", year, mon, day);
-	printf("%d년 %d월===========================================\n", year, mon);
-	print_cal(date);
-	printf("\n=====================================================");
 	
 	while (1)
 	{
+		printf("\t\t오늘 : %d년 %d월 %d일\n\n", year, mon, day);
+		printf("%d년 %d월===========================================\n", year, mon);
+		print_cal(date);
+		printf("\n=====================================================");
 		printf("\n\n1. 사용자 선택\t2. 일정 추가\t3. 일정 수정\t4. 일정 검색\n\n5. 일정 삭제\tp. 사용자 관리\tx. 종료\n");
 		char choice = get_choice(4, '1', '5', 'p', 'x');
 
@@ -66,8 +65,10 @@ void cal_main(user * usr)
 		case 'x':
 			system("cls");
 			printf("프로그램을 종료합니다.");
-			exit(0);
+			return;
 		}
+
+		system("cls");
 	}
 }
 
