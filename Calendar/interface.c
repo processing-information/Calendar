@@ -11,6 +11,8 @@ interface.c
 #include "algorithm.h"
 #define TEMP_CR_USR 100
 
+
+
 void cal_main(user * usr)
 {
 	time_t t = time(NULL);
@@ -67,7 +69,129 @@ void cal_main(user * usr)
 		system("cls");
 	}
 }
+void cal_add()
+{
+	g_add g_int = { 0,0,0,0,0,0,0,0, };
 
+	printf("일정 추가할 년,월,일 입력하시오\n");
+
+	printf("년도 입력 : ");	scanf_s("%d", &g_int.addy);
+	printf("월 입력 : ");	scanf_s("%d", &g_int.addm);
+	printf("일 입력 : ");	scanf_s("%d", &g_int.addd);
+
+	int adddate[MAXDATE] = { g_int.addy, g_int.addm,1 };
+
+	printf("\t\t\t\t\t선택한 날짜 : %d년 %d월 %d일\n\n", g_int.addy, g_int.addm, g_int.addd);
+
+	print_cal(adddate);
+
+	printf("\n");
+	printf("시작 시간  ex) 0500 :"); scanf_s("%d", &g_int.firsttime);
+	printf("종료 시간  ex) 0500 :"); scanf_s("%d", &g_int.lasttime);
+
+	printf("일정 이름 : ");  gets_s(g_int.cal_name, sizeof(g_int.cal_name));
+	char ch1 = getchar();
+	printf("일정 내용 : ");  gets_s(g_int.cal_date, sizeof(g_int.cal_date));
+	char ch2 = getchar();
+
+	char ch3 = getchar();
+
+
+	printf("반복 여부 선택 Y/N");
+	printf("\n\n1. Y \t2. N");
+	char choice = get_choice(2, '1', '2');
+	switch (choice)
+	{
+	case '1':
+		system("cls");
+		cal_addrepeat(&g_int);
+		break;
+	case '2':
+		system("cls");
+		cal_main();
+		break;
+	}
+
+	// errno_t err;
+	// FILE *out;
+	// err = fopen_s(&out, "testdate.txt", "w");
+	// if (out)
+	// {
+	// 	fwrite(adddate, sizeof(MAXDATE), 100, out);
+	// 	fclose(out);
+	// }
+}
+
+void cal_addrepeat(g_add* g_int)
+{
+	printf("=======================================================\n");
+
+
+	printf("반복 주기 선택 \n");
+	printf("\n\n1. 매일\t2. 매월 \t3. 매년 \n");
+	char choice = get_choice(4, '1', '4');
+
+	switch (choice)
+	{
+	case '1':
+		system("cls");
+		everyday(g_int);
+		break;
+	case '2':
+		system("cls");
+		monthly(g_int);
+		break;
+	case '3':
+		system("cls");
+		everyyear(g_int);
+		break;
+	}
+}
+
+void everyday(g_add* g_int)
+{
+	int date[3];
+	printf("종료일 : "); scanf_s("%d %d %d", &date[0], &date[1], &date[2]);
+
+	int day_table[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	if ((date[0] % 4 == 0 && date[0] % 100 != 0) || date[0] % 400 == 0)
+		day_table[1] = 29;
+
+	for (g_int->addy; g_int->addy <= date[0]; g_int->addy++)
+	{
+		for (g_int->addm; g_int->addm <= date[1]; g_int->addm++)
+		{
+			for (g_int->addd; g_int->addd <= date[2]; g_int->addd)
+			{
+				g_int->cal_name;
+				g_int->cal_date;
+			}
+		}
+	}
+}
+void monthly(g_add* g_int)
+{
+	int month = 0;
+	printf("종료 달 : ");
+	scanf_s("%d", &month);
+
+	for (g_int->addm; g_int->addm <= month; g_int->addm++)
+	{
+		g_int->cal_name;
+		g_int->cal_date;
+	}
+}
+void everyyear(g_add* g_int)
+{
+	int year = 0;
+	printf("종료 해 : ");
+	scanf_s("%d", &year);
+	for (g_int->addy; g_int->addy <= year; g_int->addy++)
+	{
+		g_int->cal_name;
+		g_int->cal_date;
+	}
+}
 void print_cal(int date[3])
 {
 	printf("일\t월\t화\t수\t목\t금\t토\n");
