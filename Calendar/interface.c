@@ -500,6 +500,6 @@ void print_schedule_nl(schedule* src)
 	default:
 		break;
 	}
-	printf("%d-%d-%d\t%d\t%d\t\t%d\t\t%s\t\t%s\n", src->date[0], src->date[1], src->date[2],
+	printf("%d-%d-%d\t%d\t%d\t\t%d\t\t%s\t\t%s", src->date[0], src->date[1], src->date[2],
 		d_day(today, src->date), src->time[0], src->time[1], repeat, src->schedule_name);
 }
