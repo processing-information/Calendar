@@ -7,8 +7,8 @@
 #define MAX_GET_STRING_SIZE 20
 #define USER_NAME_SIZE 15
 #define PRINT_DASH printf("========================================================================================\n")
-#define MAXDATE 150
-#define MAXNAME 100
+#define MAXDATE 150 //add_cal struct 사용
+#define MAXNAME 100 //add_cal struct 사용
 
 typedef struct A schedule;
 typedef struct B user;
