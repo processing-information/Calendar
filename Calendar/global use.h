@@ -3,9 +3,12 @@
 */
 
 #pragma once
+#define DATAMAX	10
 #define MAX_GET_STRING_SIZE 20
 #define USER_NAME_SIZE 15
 #define PRINT_DASH printf("========================================================================================\n")
+#define MAXDATE 150
+#define MAXNAME 100
 
 typedef struct A schedule;
 typedef struct B user;
@@ -21,7 +24,6 @@ struct A
 	char schedule_name[MAX_GET_STRING_SIZE];
 	int repeat;
 	schedule* next;
-	schedule* prev;
 };
 
 //사용자 구조체
@@ -31,3 +33,18 @@ struct B
 	user* next;
 	schedule* schedules;
 };
+
+//user->next가 다음 user 구조체를 가르키고 있으면 되
+//구조체 만들떄 malloc(sizeof(user))로 만들고
+
+typedef struct
+{
+	int addy;
+	int addm;
+	int addd;
+	int firsttime;
+	int lasttime;
+	char cal_date[MAXDATE];
+	char cal_name[MAXNAME];
+	char repeat[3];
+}g_add;
