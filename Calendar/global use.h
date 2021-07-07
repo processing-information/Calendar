@@ -37,7 +37,7 @@ struct B
 //user->next가 다음 user 구조체를 가르키고 있으면 되
 //구조체 만들떄 malloc(sizeof(user))로 만들고
 
-typedef struct
+typedef struct// cal_add 구조체 
 {
 	int addy;
 	int addm;
