@@ -5,22 +5,6 @@ interface.c에 정의된 함수들의 선언을 작성
 #pragma once
 #include "global use.h"
 
-#define MAXDATE 150
-#define MAXNAME 100
-typedef struct
-{
-	int addy;
-	int addm;
-	int addd;
-	int firsttime;
-	int lasttime;
-	char cal_date[MAXDATE];
-	char cal_name[MAXNAME];
-	char repeat[3];
-}g_add;
-
-
-
 
 
 //메인화면에서 일정 검색하면 오는 함수
