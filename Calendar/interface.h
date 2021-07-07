@@ -4,7 +4,8 @@ interface.c에 정의된 함수들의 선언을 작성
 */
 #pragma once
 #include "global use.h"
-
+#define MAXDATE 150
+#define MAXNAME 100
 typedef struct
 {
 	int addy;
@@ -17,8 +18,7 @@ typedef struct
 	char repeat[3];
 }g_add;
 
-#define MAXDATE 150
-#define MAXNAME 100
+
 
 
 void cal_addrepeat();
